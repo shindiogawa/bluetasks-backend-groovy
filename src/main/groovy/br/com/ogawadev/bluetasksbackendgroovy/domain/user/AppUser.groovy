@@ -1,6 +1,7 @@
 package br.com.ogawadev.bluetasksbackendgroovy.domain.user
 
 import groovy.transform.Canonical
+import lombok.AllArgsConstructor
 
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
@@ -12,6 +13,13 @@ import javax.persistence.Table
 @Canonical
 class AppUser {
 
+    AppUser(){}
+    AppUser(String username, String password, String displayName) {
+        this.username = username
+        this.password = password
+        this.displayName = displayName
+    }
+
     @Id
     @GeneratedValue
     Integer id
@@ -21,4 +29,5 @@ class AppUser {
     String password
 
     String displayName
+
 }
