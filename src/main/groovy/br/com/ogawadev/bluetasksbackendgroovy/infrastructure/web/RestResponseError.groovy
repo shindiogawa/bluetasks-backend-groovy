@@ -21,4 +21,10 @@ class RestResponseError {
         return responseError
     }
 
+    static RestResponseError fromMessage(String message) {
+        RestResponseError resp = new RestResponseError()
+        resp.error = message
+        return resp
+    }
+
 }

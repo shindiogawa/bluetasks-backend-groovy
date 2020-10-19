@@ -1,5 +1,6 @@
 package br.com.ogawadev.bluetasksbackendgroovy.infrastructure.web
 
+import br.com.ogawadev.bluetasksbackendgroovy.domain.task.DuplicatedTaskException
 import org.springframework.data.rest.core.RepositoryConstraintViolationException
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.ExceptionHandler
@@ -13,5 +14,11 @@ class WebRequestExceptionHandler {
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     RestResponseError handleException(RepositoryConstraintViolationException e) {
         return RestResponseError.fromValidationError(e.getErrors())
+    }
+
+    @ExceptionHandler
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+    RestResponseError handleException(DuplicatedTaskException e) {
+        return RestResponseError.fromMessage(e.getMessage())
     }
 }
