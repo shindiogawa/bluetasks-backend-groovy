@@ -25,6 +25,12 @@ class BluetasksBackendGroovyApplication implements RepositoryRestConfigurer{
     @Override
     void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
         config.exposeIdsFor(Task.class)
+        config.getCorsRegistry()
+            .addMapping("/**")
+            .allowedOrigins("*") // nome dos hosts para liberar
+            .allowedMethods("GET","POST","PUT","DELETE")
+
+        log.info("Repository CORS setup... OK!")
     }
 
     @Bean
