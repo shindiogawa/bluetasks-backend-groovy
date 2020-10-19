@@ -57,6 +57,6 @@ class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter{
             .compact()
 
         response.addHeader(SecurityConstants.AUTHORIZATION_HEADER, SecurityConstants.TOKEN_PREFIX + jwtToken )
-        
+
     }
 }
