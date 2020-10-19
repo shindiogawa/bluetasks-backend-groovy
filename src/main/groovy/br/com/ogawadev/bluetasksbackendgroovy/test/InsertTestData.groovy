@@ -7,8 +7,8 @@ import br.com.ogawadev.bluetasksbackendgroovy.domain.user.AppUserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.event.ContextRefreshedEvent
 import org.springframework.context.event.EventListener
-//import org.springframework.security.crypto.factory.PasswordEncoderFactories
-//import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.security.crypto.factory.PasswordEncoderFactories
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component
 
 import java.time.LocalDate
@@ -26,17 +26,11 @@ class InsertTestData {
 
     @EventListener
     void onApplicationEvent(ContextRefreshedEvent event) {
-//         PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder()
-//        AppUser appUser1 = new AppUser("john", encoder.encode("abc"), "John Coder")
-//        appUserRepository.save(appUser1);
-//
-//        AppUser appUser2 = new AppUser("paul", encoder.encode("cba"), "Paul JDev")
-//        appUserRepository.save(appUser2)
-
-        AppUser appUser1 = new AppUser("john", "abc", "John Coder")
+        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder()
+        AppUser appUser1 = new AppUser("john", encoder.encode("abc"), "John Coder")
         appUserRepository.save(appUser1);
 
-        AppUser appUser2 = new AppUser("paul", "cba", "Paul JDev")
+        AppUser appUser2 = new AppUser("paul", encoder.encode("cba"), "Paul JDev")
         appUserRepository.save(appUser2)
 
         LocalDate baseDate = LocalDate.parse("2025-02-01")
