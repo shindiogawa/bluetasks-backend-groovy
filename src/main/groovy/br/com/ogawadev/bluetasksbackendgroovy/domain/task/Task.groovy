@@ -1,8 +1,10 @@
 package br.com.ogawadev.bluetasksbackendgroovy.domain.task
 
 import br.com.ogawadev.bluetasksbackendgroovy.domain.user.AppUser
+import com.fasterxml.jackson.annotation.JsonIgnore
 import groovy.transform.Canonical
 import lombok.NoArgsConstructor
+
 import org.hibernate.validator.constraints.Length
 
 import javax.persistence.Entity
@@ -45,6 +47,7 @@ class Task {
     @ManyToOne
     @JoinColumn(name="app_user_id")
 //    @NotNull(message = "O usuário da tarefa é obrigatório")
+    @JsonIgnore
     AppUser appUser
 
 
